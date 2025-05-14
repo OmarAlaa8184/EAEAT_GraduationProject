@@ -1,0 +1,247 @@
+<?xml version='1.0'?>
+
+<robot name="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <link name="robot_footprint"></link>
+
+  
+
+  <link name='chassis'>
+    <pose>0 0 0.1 0 0 0</pose>
+
+    <inertial>
+      <mass value="50.0"/>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"
+      />
+    </inertial>
+
+    <collision name='chassis_collision'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/> 
+      <geometry>
+        <box size="0.37 0.46 0.17"/>
+      </geometry>
+    </collision>
+
+    <visual name='chassis_visual'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <geometry>
+        <box size="0.37 0.46 0.17"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="robot_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.1" rpy="0 0 0" />
+    <parent link="robot_footprint"/>
+    <child link="chassis" />
+  </joint>
+
+    <!-- first right wheel Discribe our robot -->
+    <link name='fright_wheel'>
+      <pose>0 0 0 0 0 0</pose>
+
+      <inertial>
+      <mass value="1.0"/>
+
+        <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"/>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+      </inertial>
+
+      <visual name='fright_wheel_visual'>
+        <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+        <geometry>
+          <cylinder  radius="0.035" length="0.1"/>
+        </geometry>
+        
+      </visual>
+      <collision name='fright_wheel_collision'>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+        <geometry>
+          <cylinder  radius="0.035" length="0.1"/>
+        </geometry>
+      </collision>
+    </link>
+
+      <!-- second right wheel Discribe our robot -->
+    <link name='sright_wheel'>
+      <pose>0 0 0 0 0 0</pose>
+
+      <inertial>
+      <mass value="1.0"/>
+
+        <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"/>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+      </inertial>
+
+      <visual name='sright_wheel_visual'>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+      <geometry>
+        <cylinder  radius="0.035" length="0.1"/>
+      </geometry>
+        
+      </visual>
+      <collision name='sright_wheel_collision'>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+        <geometry>
+          <cylinder  radius="0.035" length="0.1"/>
+        </geometry>
+      </collision>
+    </link>
+
+
+<!-- first ledt wheel Discribe our robot -->
+    <link name='fleft_wheel'>
+      <pose>0 0 0 0 0 0</pose>
+
+      <inertial>
+      <mass value="1.0"/>
+
+        <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"/>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+      </inertial>
+
+      <visual name='fleft_wheel_visual'>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+      <geometry>
+        <cylinder  radius="0.035" length="0.1"/>
+      </geometry>
+        
+      </visual>
+      <collision name='fleft_wheel_collision'>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+        <geometry>
+          <cylinder  radius="0.035" length="0.1"/>
+        </geometry>
+      </collision>
+    </link>
+
+      <!-- second left wheel Discribe our robot -->
+    <link name='sleft_wheel'>
+      <pose>0 0 0 0 0 0</pose>
+
+      <inertial>
+      <mass value="1.0"/>
+
+        <inertia
+          ixx="0.1" ixy="0" ixz="0"
+          iyy="0.1" iyz="0"
+          izz="0.1"/>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+      </inertial>
+
+      <visual name='sleft_wheel_visual'>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+      <geometry>
+        <cylinder  radius="0.035" length="0.1"/>
+      </geometry>
+        
+      </visual>
+      <collision name='sleft_wheel_collision'>
+      <origin xyz="0 0 0" rpy="1.578 0 0"/>
+
+        <geometry>
+          <cylinder  radius="0.035" length="0.1"/>
+        </geometry>
+      </collision>
+    </link>
+
+
+    <joint type="continuous" name="fright_wheel_joint">
+    <origin xyz="0.15 0.28 -0.065" rpy="0 0 0"/>
+    <child link="fright_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+    <joint type="continuous" name="sright_wheel_joint">
+    <origin xyz="-0.15 0.28 -0.065" rpy="0 0 0"/>
+    <child link="sright_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+
+    <joint type="continuous" name="fleft_wheel_joint">
+      <origin xyz="0.15 -0.28 -0.065" rpy="0 0 0"/>
+      <child link="fleft_wheel"/>
+      <parent link="chassis"/>
+      <axis xyz="0 1 0" rpy="0 0 0"/>
+      <limit effort="10000" velocity="1000"/>
+      <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+    <joint type="continuous" name="sleft_wheel_joint">
+    <origin xyz="-0.15 -0.28 -0.065" rpy="0 0 0"/>
+    <child link="sleft_wheel"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+
+    <link name='laser_frame'>
+   <pose>0 0 0 0 0 0</pose>
+    <inertial>
+      <mass value="1e-5"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia
+          ixx="1e-6" ixy="0" ixz="0"
+          iyy="1e-6" iyz="0"
+          izz="1e-6"
+      />
+    </inertial>
+
+    <collision name='collision'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/> 
+      <geometry>
+        <box  size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+    <visual name='laser_frame_visual'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <geometry>
+        <mesh filename="package://my_robot/meshes/rplidar.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint type="fixed" name="laser_frame_joint">
+    <origin xyz="0 0 0.15" rpy="0 0 0"/>
+    <child link="laser_frame"/>
+    <parent link="chassis"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+
+
+</robot>
